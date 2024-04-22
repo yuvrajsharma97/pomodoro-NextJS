@@ -21,6 +21,9 @@ module.exports = {
       boxShadow: {
         custom: "0.5px 0.5px 10px #fceabb",
       },
+      screens: {
+        xs: { min: "300px", max: "640px" }, // Custom media query
+      },
     },
   },
   plugins: [],

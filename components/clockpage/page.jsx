@@ -95,7 +95,7 @@ const ClockPage = () => {
       </div>
       <div className="flex flex-wrap justify-between my-[2.5rem]">
         <div className="flex justify-center w-full">
-          <div className="flex flex-wrap justify-around border border-color4 border-2 rounded-full">
+          <div className="flex flex-wrap justify-around border border-color4 border-2 rounded-full xs:rounded-md">
             {durationArray.map((duration, index) => (
               <button
                 key={index}
@@ -147,7 +147,7 @@ const ClockPage = () => {
 
             {isOpen && (
               <div className="fixed inset-0 z-50 overflow-auto bg-gray-500 bg-opacity-50 flex items-center justify-center">
-                <div className="bg-white rounded-lg w-1/2 p-8 relative">
+                <div className="bg-white rounded-lg w-1/2 xs:w-5/6 p-8 relative">
                   <button
                     className="text-color1 absolute top-0 right-0"
                     onClick={(e) => {
