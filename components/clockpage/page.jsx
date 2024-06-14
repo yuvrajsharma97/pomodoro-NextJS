@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { IoCloseCircleOutline } from "react-icons/io5";
 
@@ -8,6 +8,7 @@ const ClockPage = () => {
   const [activeButton, setActiveButton] = useState(null);
   const [clockActive, setClockActive] = useState(false);
   const [clockState, setClockState] = useState("none");
+  const [startDisabled, setstartDisabled] = useState(false);
   const [key, setKey] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [duration, setDuration] = useState({
@@ -39,13 +40,16 @@ const ClockPage = () => {
 
   const handleStart = () => {
     setClockActive(true);
+    setstartDisabled(true);
     setRemainingTime((prev) => prev - 1);
   };
   const handlePause = () => {
     setClockActive(false);
+    setstartDisabled(false);
   };
   const handleReset = () => {
     setClockActive(false);
+    setstartDisabled(false);
     setRemainingTime(
       clockState === "focus"
         ? duration.focus
@@ -55,23 +59,29 @@ const ClockPage = () => {
         ? duration.longBreak
         : 0
     );
-    setKey((prevKey) => prevKey + 1); // Increment the key
+    setKey((prevKey) => prevKey + 1); 
   };
 
   const handleFocus = () => {
     setClockState("focus");
     setRemainingTime(duration.focus);
-    setKey((prevKey) => prevKey + 1); // Increment the key
+    setClockActive(false);
+    setstartDisabled(false);
+    setKey((prevKey) => prevKey + 1); 
   };
   const handleShortBreak = () => {
     setClockState("shortBreak");
     setRemainingTime(duration.shortBreak);
-    setKey((prevKey) => prevKey + 1); // Increment the key
+    setClockActive(false);
+    setstartDisabled(false);
+    setKey((prevKey) => prevKey + 1); 
   };
   const handleLongBreak = () => {
     setClockState("longBreak");
     setRemainingTime(duration.longBreak);
-    setKey((prevKey) => prevKey + 1); // Increment the key
+    setClockActive(false);
+    setstartDisabled(false);
+    setKey((prevKey) => prevKey + 1); 
   };
 
   const durationArray = [
@@ -81,9 +91,9 @@ const ClockPage = () => {
   ];
 
   const controlButtons = [
-    { name: "Start", function: handleStart },
-    { name: "Pause", function: handlePause },
-    { name: "Reset", function: handleReset },
+    { name: "Start", function: handleStart, disabled: startDisabled },
+    { name: "Pause", function: handlePause, disabled: false },
+    { name: "Reset", function: handleReset, disabled: false },
   ];
   return (
     <div className="flex flex-col justify-center">
@@ -131,7 +141,8 @@ const ClockPage = () => {
               <button
                 key={index}
                 className="text-color3 border border-color4 border-2 hover:shadow-custom bg-color2 rounded-full w-24 p-2 m-2"
-                onClick={control.function}>
+                onClick={control.function}
+                disabled={control.disabled}>
                 {control.name}
               </button>
             ))}{" "}
