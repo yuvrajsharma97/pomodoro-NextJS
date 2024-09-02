@@ -59,7 +59,7 @@ const ClockPage = () => {
         ? duration.longBreak
         : 0
     );
-    setKey((prevKey) => prevKey + 1); 
+    setKey((prevKey) => prevKey + 1);
   };
 
   const handleFocus = () => {
@@ -67,21 +67,21 @@ const ClockPage = () => {
     setRemainingTime(duration.focus);
     setClockActive(false);
     setstartDisabled(false);
-    setKey((prevKey) => prevKey + 1); 
+    setKey((prevKey) => prevKey + 1);
   };
   const handleShortBreak = () => {
     setClockState("shortBreak");
     setRemainingTime(duration.shortBreak);
     setClockActive(false);
     setstartDisabled(false);
-    setKey((prevKey) => prevKey + 1); 
+    setKey((prevKey) => prevKey + 1);
   };
   const handleLongBreak = () => {
     setClockState("longBreak");
     setRemainingTime(duration.longBreak);
     setClockActive(false);
     setstartDisabled(false);
-    setKey((prevKey) => prevKey + 1); 
+    setKey((prevKey) => prevKey + 1);
   };
 
   const durationArray = [
@@ -96,14 +96,17 @@ const ClockPage = () => {
     { name: "Reset", function: handleReset, disabled: false },
   ];
   return (
-    <div className="flex flex-col justify-center">
-      <div className="text-center text-color3 w-full">
-        <h1 className="text-4xl font-bold mt-5">Pomodoro</h1>
-        <p className="text-2xl mt-3">
-          <span>Get more done with the Pomodoro.</span>
-        </p>
+    <div className="w-full flex flex-col justify-center ">
+      <div className="flex justify-center">
+        <div className="text-center text-color4 w-2/6 glass py-3 mt-5">
+          <h1 className="text-4xl font-bold">Pomodoro</h1>
+          <p className="text-2xl">
+            <span>Get more done with the Pomodoro.</span>
+          </p>
+        </div>
       </div>
-      <div className="flex flex-wrap justify-between my-[2.5rem]">
+
+      <div className="flex flex-wrap justify-between my-[2rem]">
         <div className="flex justify-center w-full">
           <div className="flex flex-wrap justify-around border border-color4 border-2 rounded-full xs:rounded-md">
             {durationArray.map((duration, index) => (
