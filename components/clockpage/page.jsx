@@ -96,11 +96,11 @@ const ClockPage = () => {
     { name: "Reset", function: handleReset, disabled: false },
   ];
   return (
-    <div className="w-full flex flex-col justify-center ">
+    <div className="w-full flex flex-col space-y-4">
       <div className="flex justify-center">
-        <div className="text-center text-color4 w-2/6 glass py-3 mt-5">
-          <h1 className="text-4xl font-bold">Pomodoro</h1>
-          <p className="text-2xl">
+        <div className="text-center text-color4 w-full sm:w-2/3 md:w-2/6 glass py-3 mt-5">
+          <h1 className="text-2xl md:text-4xl font-bold">Pomodoro</h1>
+          <p className="text-1xl md:text-2xl">
             <span>Get more done with the Pomodoro.</span>
           </p>
         </div>
@@ -108,7 +108,7 @@ const ClockPage = () => {
 
       <div className="flex flex-wrap justify-between my-[2rem]">
         <div className="flex justify-center w-full">
-          <div className="flex flex-wrap justify-around border border-color4 border-2 rounded-full xs:rounded-md">
+          <div className="flex flex-wrap justify-around border border-color4 border-2 rounded-full">
             {durationArray.map((duration, index) => (
               <button
                 key={index}
@@ -116,14 +116,15 @@ const ClockPage = () => {
                   setActiveButton(index);
                   duration.function();
                 }}
-                className={`text-color3 border border-color4 border-2 hover:shadow-custom bg-color2 rounded-full w-36 p-2 m-2 ${
+                className={`text-color3 border border-color4 border-2 hover:shadow-custom bg-color2 rounded-full w-28 p-2 m-1 ${
                   activeButton === index ? "shadow-custom" : ""
                 }`}>
                 {duration.name}
               </button>
-            ))}{" "}
+            ))}
           </div>
         </div>
+
         <div
           className="flex justify-center w-full my-[6rem]"
           style={{ filter: "drop-shadow(0.5px 0.5px 25px #fceabb)" }}>
@@ -138,6 +139,7 @@ const ClockPage = () => {
             {renderTime}
           </CountdownCircleTimer>
         </div>
+
         <div className="flex justify-center w-full">
           <div className="border border-2 border-color4 rounded-full">
             {controlButtons.map((control, index) => (
@@ -148,11 +150,12 @@ const ClockPage = () => {
                 disabled={control.disabled}>
                 {control.name}
               </button>
-            ))}{" "}
+            ))}
           </div>
         </div>
+
         <div className="flex justify-center w-full">
-          <div className="">
+          <div>
             <button
               onClick={(e) => setIsOpen((prev) => !prev)}
               className="text-color3 border border-color4 border-2 hover:shadow-custom bg-color2 rounded-full w-36 p-2 m-2">
@@ -161,32 +164,30 @@ const ClockPage = () => {
 
             {isOpen && (
               <div className="fixed inset-0 z-50 overflow-auto bg-gray-500 bg-opacity-50 flex items-center justify-center">
-                <div className="bg-white rounded-lg w-1/2 xs:w-5/6 p-8 relative">
+                <div className="bg-white rounded-lg w-full sm:w-5/6 md:w-1/2 p-8 relative">
                   <button
                     className="text-color1 absolute top-0 right-0"
                     onClick={(e) => {
-                      setIsOpen((prev) => !prev),
-                        setDuration({
-                          ...duration,
-                          focus: 30 * 60,
-                          shortBreak: 5 * 60,
-                          longBreak: 10 * 60,
-                        });
+                      setIsOpen((prev) => !prev);
+                      setDuration({
+                        ...duration,
+                        focus: 30 * 60,
+                        shortBreak: 5 * 60,
+                        longBreak: 10 * 60,
+                      });
                     }}>
                     <IoCloseCircleOutline size={30} className="text-color4" />
                   </button>
                   <h2 className="text-xl font-semibold mb-4 text-center">
                     Edit time span here
                   </h2>
-                  <div className="flex justify-around w-full">
-                    <span className="font-semibold my-auto w-1/2 flex justify-around">
-                      Focus Time :{" "}
-                    </span>
-                    <span className="w-1/2 flex justify-around">
+                  <div className="flex flex-wrap justify-between w-full">
+                    <div className="w-full sm:w-1/2 mb-4">
+                      <span className="font-semibold">Focus Time : </span>
                       <input
                         type="number"
                         placeholder="30 min"
-                        className="border-b-4 border-color3 w-24 p-2 m-2 text-center focus:ring-0 focus:ring-color3"
+                        className="border-b-4 border-color3 w-full sm:w-24 p-2 m-2 text-center focus:ring-0 focus:ring-color3"
                         onChange={(e) =>
                           setDuration({
                             ...duration,
@@ -194,18 +195,15 @@ const ClockPage = () => {
                               e.target.value >= 0 ? e.target.value * 60 : 0,
                           })
                         }
-                      />{" "}
-                    </span>
-                  </div>
-                  <div className="flex justify-around w-full">
-                    <span className="font-semibold my-auto w-1/2 flex justify-around">
-                      Short Break Time :{" "}
-                    </span>
-                    <span className="w-1/2 flex justify-around">
+                      />
+                    </div>
+
+                    <div className="w-full sm:w-1/2 mb-4">
+                      <span className="font-semibold">Short Break Time : </span>
                       <input
                         type="number"
                         placeholder="05 min"
-                        className="border-b-4 border-color3 w-24 p-2 m-2 text-center"
+                        className="border-b-4 border-color3 w-full sm:w-24 p-2 m-2 text-center"
                         onChange={(e) =>
                           setDuration({
                             ...duration,
@@ -214,17 +212,14 @@ const ClockPage = () => {
                           })
                         }
                       />
-                    </span>
-                  </div>
-                  <div className="flex justify-around w-full">
-                    <span className="font-semibold my-auto w-1/2 flex justify-around">
-                      Long Break Time :{" "}
-                    </span>
-                    <span className="w-1/2 flex justify-around">
+                    </div>
+
+                    <div className="w-full sm:w-1/2 mb-4">
+                      <span className="font-semibold">Long Break Time : </span>
                       <input
                         type="number"
                         placeholder="10 min"
-                        className="border-b-4 border-color3 w-24 p-2 m-2 text-center"
+                        className="border-b-4 border-color3 w-full sm:w-24 p-2 m-2 text-center"
                         onChange={(e) =>
                           setDuration({
                             ...duration,
@@ -233,14 +228,12 @@ const ClockPage = () => {
                           })
                         }
                       />
-                    </span>
+                    </div>
                   </div>
 
-                  <div className="flex justify-around w-full">
+                  <div className="flex justify-center">
                     <button
-                      onClick={(e) => {
-                        setIsOpen((prev) => !prev);
-                      }}
+                      onClick={(e) => setIsOpen((prev) => !prev)}
                       className="text-color4 border border-color4 border-2 rounded-full hover:bg-color4 hover:text-white w-36 p-2 m-2">
                       Save Changes
                     </button>
