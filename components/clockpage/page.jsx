@@ -96,151 +96,157 @@ const ClockPage = () => {
     { name: "Reset", function: handleReset, disabled: false },
   ];
   return (
-    <div className="w-full flex flex-col space-y-4">
-      <div className="flex justify-center">
-        <div className="text-center text-color4 w-full sm:w-2/3 md:w-2/6 glass py-3 mt-5">
-          <h1 className="text-2xl md:text-4xl font-bold">Pomodoro</h1>
-          <p className="text-1xl md:text-2xl">
-            <span>Get more done with the Pomodoro.</span>
-          </p>
-        </div>
-      </div>
-
-      <div className="flex flex-wrap justify-between my-[2rem]">
-        <div className="flex justify-center w-full">
-          <div className="flex flex-wrap justify-around border border-color4 border-2 rounded-full">
-            {durationArray.map((duration, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setActiveButton(index);
-                  duration.function();
-                }}
-                className={`text-color3 border border-color4 border-2 hover:shadow-custom bg-color2 rounded-full w-28 p-2 m-1 ${
-                  activeButton === index ? "shadow-custom" : ""
-                }`}>
-                {duration.name}
-              </button>
-            ))}
+    <div className="w-full min-h-screen flex flex-col space-y-4">
+      <div className="my-auto">
+        <div className="flex justify-center">
+          <div className="text-center text-color4 w-full sm:w-2/3 md:w-2/6 glass py-3 mt-5">
+            <h1 className="text-2xl md:text-4xl font-bold">Pomodoro</h1>
+            <p className="text-1xl md:text-2xl">
+              <span>Get more done with the Pomodoro.</span>
+            </p>
           </div>
         </div>
 
-        <div
-          className="flex justify-center w-full my-[6rem]"
-          style={{ filter: "drop-shadow(0.5px 0.5px 25px #fceabb)" }}>
-          <CountdownCircleTimer
-            key={key}
-            isPlaying={clockActive}
-            duration={remainingTime}
-            colors={["#f5af19"]}
-            colorsTime={[30]}
-            onComplete={() => ({ shouldRepeat: false, delay: 1 })}
-            strokeWidth="4">
-            {renderTime}
-          </CountdownCircleTimer>
-        </div>
-
-        <div className="flex justify-center w-full">
-          <div className="border border-2 border-color4 rounded-full">
-            {controlButtons.map((control, index) => (
-              <button
-                key={index}
-                className="text-color3 border border-color4 border-2 hover:shadow-custom bg-color2 rounded-full w-24 p-2 m-2"
-                onClick={control.function}
-                disabled={control.disabled}>
-                {control.name}
-              </button>
-            ))}
+        <div className="flex flex-wrap justify-between my-[2rem]">
+          <div className="flex justify-center w-full">
+            <div className="flex flex-wrap justify-around border border-color4 border-2 rounded-full">
+              {durationArray.map((duration, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setActiveButton(index);
+                    duration.function();
+                  }}
+                  className={`text-color3 border border-color4 border-2 hover:shadow-custom bg-color2 rounded-full w-28 p-2 m-1 ${
+                    activeButton === index ? "shadow-custom" : ""
+                  }`}>
+                  {duration.name}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className="flex justify-center w-full">
-          <div>
-            <button
-              onClick={(e) => setIsOpen((prev) => !prev)}
-              className="text-color3 border border-color4 border-2 hover:shadow-custom bg-color2 rounded-full w-36 p-2 m-2">
-              Set Duration
-            </button>
+          <div
+            className="flex justify-center w-full my-[6rem]"
+            style={{ filter: "drop-shadow(0.5px 0.5px 25px #fceabb)" }}>
+            <CountdownCircleTimer
+              key={key}
+              isPlaying={clockActive}
+              duration={remainingTime}
+              colors={["#f5af19"]}
+              colorsTime={[30]}
+              onComplete={() => ({ shouldRepeat: false, delay: 1 })}
+              strokeWidth="4">
+              {renderTime}
+            </CountdownCircleTimer>
+          </div>
 
-            {isOpen && (
-              <div className="fixed inset-0 z-50 overflow-auto bg-gray-500 bg-opacity-50 flex items-center justify-center">
-                <div className="bg-white rounded-lg w-full sm:w-5/6 md:w-1/2 p-8 relative">
-                  <button
-                    className="text-color1 absolute top-0 right-0"
-                    onClick={(e) => {
-                      setIsOpen((prev) => !prev);
-                      setDuration({
-                        ...duration,
-                        focus: 30 * 60,
-                        shortBreak: 5 * 60,
-                        longBreak: 10 * 60,
-                      });
-                    }}>
-                    <IoCloseCircleOutline size={30} className="text-color4" />
-                  </button>
-                  <h2 className="text-xl font-semibold mb-4 text-center">
-                    Edit time span here
-                  </h2>
-                  <div className="flex flex-wrap justify-between w-full">
-                    <div className="w-full sm:w-1/2 mb-4">
-                      <span className="font-semibold">Focus Time : </span>
-                      <input
-                        type="number"
-                        placeholder="30 min"
-                        className="border-b-4 border-color3 w-full sm:w-24 p-2 m-2 text-center focus:ring-0 focus:ring-color3"
-                        onChange={(e) =>
-                          setDuration({
-                            ...duration,
-                            focus:
-                              e.target.value >= 0 ? e.target.value * 60 : 0,
-                          })
-                        }
-                      />
-                    </div>
+          <div className="flex justify-center w-full">
+            <div className="border border-2 border-color4 rounded-full">
+              {controlButtons.map((control, index) => (
+                <button
+                  key={index}
+                  className="text-color3 border border-color4 border-2 hover:shadow-custom bg-color2 rounded-full w-24 p-2 m-2"
+                  onClick={control.function}
+                  disabled={control.disabled}>
+                  {control.name}
+                </button>
+              ))}
+            </div>
+          </div>
 
-                    <div className="w-full sm:w-1/2 mb-4">
-                      <span className="font-semibold">Short Break Time : </span>
-                      <input
-                        type="number"
-                        placeholder="05 min"
-                        className="border-b-4 border-color3 w-full sm:w-24 p-2 m-2 text-center"
-                        onChange={(e) =>
-                          setDuration({
-                            ...duration,
-                            shortBreak:
-                              e.target.value >= 0 ? e.target.value * 60 : 0,
-                          })
-                        }
-                      />
-                    </div>
+          <div className="flex justify-center w-full">
+            <div>
+              <button
+                onClick={(e) => setIsOpen((prev) => !prev)}
+                className="text-color3 border border-color4 border-2 hover:shadow-custom bg-color2 rounded-full w-36 p-2 m-2">
+                Set Duration
+              </button>
 
-                    <div className="w-full sm:w-1/2 mb-4">
-                      <span className="font-semibold">Long Break Time : </span>
-                      <input
-                        type="number"
-                        placeholder="10 min"
-                        className="border-b-4 border-color3 w-full sm:w-24 p-2 m-2 text-center"
-                        onChange={(e) =>
-                          setDuration({
-                            ...duration,
-                            longBreak:
-                              e.target.value >= 0 ? e.target.value * 60 : 0,
-                          })
-                        }
-                      />
-                    </div>
-                  </div>
-
-                  <div className="flex justify-center">
+              {isOpen && (
+                <div className="fixed inset-0 z-50 overflow-auto bg-gray-500 bg-opacity-50 flex items-center justify-center">
+                  <div className="bg-white rounded-lg w-full sm:w-5/6 md:w-1/2 p-8 relative">
                     <button
-                      onClick={(e) => setIsOpen((prev) => !prev)}
-                      className="text-color4 border border-color4 border-2 rounded-full hover:bg-color4 hover:text-white w-36 p-2 m-2">
-                      Save Changes
+                      className="text-color1 absolute top-0 right-0"
+                      onClick={(e) => {
+                        setIsOpen((prev) => !prev);
+                        setDuration({
+                          ...duration,
+                          focus: 30 * 60,
+                          shortBreak: 5 * 60,
+                          longBreak: 10 * 60,
+                        });
+                      }}>
+                      <IoCloseCircleOutline size={30} className="text-color4" />
                     </button>
+                    <h2 className="text-xl font-semibold mb-4 text-center">
+                      Edit time span here
+                    </h2>
+                    <div className="flex flex-wrap justify-between w-full">
+                      <div className="w-full sm:w-1/2 mb-4">
+                        <span className="font-semibold">Focus Time : </span>
+                        <input
+                          type="number"
+                          placeholder="30 min"
+                          className="border-b-4 border-color3 w-full sm:w-24 p-2 m-2 text-center focus:ring-0 focus:ring-color3"
+                          onChange={(e) =>
+                            setDuration({
+                              ...duration,
+                              focus:
+                                e.target.value >= 0 ? e.target.value * 60 : 0,
+                            })
+                          }
+                        />
+                      </div>
+
+                      <div className="w-full sm:w-1/2 mb-4">
+                        <span className="font-semibold">
+                          Short Break Time :{" "}
+                        </span>
+                        <input
+                          type="number"
+                          placeholder="05 min"
+                          className="border-b-4 border-color3 w-full sm:w-24 p-2 m-2 text-center"
+                          onChange={(e) =>
+                            setDuration({
+                              ...duration,
+                              shortBreak:
+                                e.target.value >= 0 ? e.target.value * 60 : 0,
+                            })
+                          }
+                        />
+                      </div>
+
+                      <div className="w-full sm:w-1/2 mb-4">
+                        <span className="font-semibold">
+                          Long Break Time :{" "}
+                        </span>
+                        <input
+                          type="number"
+                          placeholder="10 min"
+                          className="border-b-4 border-color3 w-full sm:w-24 p-2 m-2 text-center"
+                          onChange={(e) =>
+                            setDuration({
+                              ...duration,
+                              longBreak:
+                                e.target.value >= 0 ? e.target.value * 60 : 0,
+                            })
+                          }
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex justify-center">
+                      <button
+                        onClick={(e) => setIsOpen((prev) => !prev)}
+                        className="text-color4 border border-color4 border-2 rounded-full hover:bg-color4 hover:text-white w-36 p-2 m-2">
+                        Save Changes
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </div>
