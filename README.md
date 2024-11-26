@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pomodoro Timer: Focus and Productivity Made Simple
+
+**Pomodoro Timer** is a React and Next.js application designed to help users boost productivity using the Pomodoro Technique. It features an intuitive interface and a visually engaging countdown timer to assist users in managing their work and break intervals effectively.
+
+---
+
+## Live Demo
+
+Check out the live application here: [Pomodoro Timer](https://pomodoro-next-js-chi.vercel.app/)
+
+---
+
+## Features
+
+- **Countdown Timer**: A visually appealing timer for work and break sessions.
+- **Customizable Intervals**: Easily adjust session durations to suit your productivity preferences.
+- **Responsive UI**: Enjoy a seamless experience across all devices.
+- **Modern Design**: A clean and minimalistic interface for distraction-free focus.
+
+---
+
+## Tech Stack
+
+- **Framework**: React and Next.js for a dynamic and efficient front end.
+- **Styling**: Tailwind CSS for responsive and modern UI design.
+
+---
+
+## Libraries Used
+
+### Dependencies
+
+- **[React Countdown Circle Timer](https://github.com/vydimitrov/react-countdown-circle-timer)**: A customizable and engaging circular countdown timer.
+- **[React Icons](https://react-icons.github.io/react-icons/)**: A rich set of icons for enhancing the UI.
+- **[Next.js](https://nextjs.org/)**: A React framework for server-side rendering and static site generation.
+
+### Dev Dependencies
+
+- **[ESLint](https://eslint.org/)**: A code quality and formatting tool.
+- **[TailwindCSS](https://tailwindcss.com/)**: Utility-first CSS framework for efficient and responsive styling.
+- **[PostCSS](https://postcss.org/)**: A tool for transforming CSS with JavaScript.
+
+---
+
+## Scripts
+
+- `npm run dev`: Start the development server.
+- `npm run build`: Build the project for production.
+- `npm run start`: Start the production server.
+- `npm run lint`: Lint the project using ESLint.
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Node.js](https://nodejs.org/) (v16 or higher recommended)
+- [npm](https://www.npmjs.com/) or [Yarn](https://yarnpkg.com/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+pomodoro/<br>
+├── public/ # Static assets<br>
+├── src/ # Main source code<br>
+│ ├── components/ # Reusable components<br>
+│ ├── pages/ # Page components<br>
+│ ├── styles/ # Global Tailwind CSS styles<br>
+│ ├── App.jsx # Main app component<br>
+│ ├── main.jsx # Application entry point<br>
+├── package.json # Project metadata and dependencies<br>
+├── next.config.js # Next.js configuration<br>
+├── tailwind.config.js # Tailwind CSS configuration<br>
+├── postcss.config.js # PostCSS configuration<br>
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
