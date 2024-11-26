@@ -60,20 +60,4 @@ Check out the live application here: [Pomodoro Timer](https://pomodoro-next-js-c
 
 ---
 
-## Project Structure
-
-pomodoro/<br>
-├── public/ # Static assets<br>
-├── src/ # Main source code<br>
-│ ├── components/ # Reusable components<br>
-│ ├── pages/ # Page components<br>
-│ ├── styles/ # Global Tailwind CSS styles<br>
-│ ├── App.jsx # Main app component<br>
-│ ├── main.jsx # Application entry point<br>
-├── package.json # Project metadata and dependencies<br>
-├── next.config.js # Next.js configuration<br>
-├── tailwind.config.js # Tailwind CSS configuration<br>
-├── postcss.config.js # PostCSS configuration<br>
-
----
 
