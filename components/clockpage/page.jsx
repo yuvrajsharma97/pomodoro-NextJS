@@ -2,13 +2,14 @@
 import React, { useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { IoCloseCircleOutline } from "react-icons/io5";
+import Audio from "../audio";
 
 const ClockPage = () => {
   const [remainingTime, setRemainingTime] = useState(0);
   const [activeButton, setActiveButton] = useState(null);
   const [clockActive, setClockActive] = useState(false);
   const [clockState, setClockState] = useState("none");
-  const [startDisabled, setstartDisabled] = useState(false);
+  const [startDisabled, setStartDisabled] = useState(false);
   const [key, setKey] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [duration, setDuration] = useState({
@@ -39,17 +40,19 @@ const ClockPage = () => {
   };
 
   const handleStart = () => {
+    if (clockState === "none" || remainingTime <= 0) {
+      return;
+    }
     setClockActive(true);
-    setstartDisabled(true);
-    setRemainingTime((prev) => prev - 1);
+    setStartDisabled(true);
   };
   const handlePause = () => {
     setClockActive(false);
-    setstartDisabled(false);
+    setStartDisabled(false);
   };
   const handleReset = () => {
     setClockActive(false);
-    setstartDisabled(false);
+    setStartDisabled(false);
     setRemainingTime(
       clockState === "focus"
         ? duration.focus
@@ -66,21 +69,21 @@ const ClockPage = () => {
     setClockState("focus");
     setRemainingTime(duration.focus);
     setClockActive(false);
-    setstartDisabled(false);
+    setStartDisabled(false);
     setKey((prevKey) => prevKey + 1);
   };
   const handleShortBreak = () => {
     setClockState("shortBreak");
     setRemainingTime(duration.shortBreak);
     setClockActive(false);
-    setstartDisabled(false);
+    setStartDisabled(false);
     setKey((prevKey) => prevKey + 1);
   };
   const handleLongBreak = () => {
     setClockState("longBreak");
     setRemainingTime(duration.longBreak);
     setClockActive(false);
-    setstartDisabled(false);
+    setStartDisabled(false);
     setKey((prevKey) => prevKey + 1);
   };
 
@@ -107,6 +110,12 @@ const ClockPage = () => {
           </div>
         </div>
 
+        <div className="my-[2rem]">
+          <div className="flex justify-center">
+            <Audio />
+          </div>
+        </div>
+
         <div className="flex flex-wrap justify-between my-[2rem]">
           <div className="flex justify-center w-full">
             <div className="flex flex-wrap justify-around border border-color4 border-2 rounded-full">
@@ -127,7 +136,7 @@ const ClockPage = () => {
           </div>
 
           <div
-            className="flex justify-center w-full my-[6rem]"
+            className="flex justify-center w-full my-[3rem]"
             style={{ filter: "drop-shadow(0.5px 0.5px 25px #fceabb)" }}>
             <CountdownCircleTimer
               key={key}
@@ -170,12 +179,6 @@ const ClockPage = () => {
                       className="text-color1 absolute top-0 right-0"
                       onClick={(e) => {
                         setIsOpen((prev) => !prev);
-                        setDuration({
-                          ...duration,
-                          focus: 30 * 60,
-                          shortBreak: 5 * 60,
-                          longBreak: 10 * 60,
-                        });
                       }}>
                       <IoCloseCircleOutline size={30} className="text-color4" />
                     </button>
